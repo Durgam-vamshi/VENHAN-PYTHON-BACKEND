@@ -26,7 +26,7 @@ def main():
     library = Library()
 
     while True:
-        print("\n====== 📚 Library Management System ======")
+        print("\n======Library Management System ======")
         print("1. Add Book")
         print("2. Update Book")
         print("3. Remove Book")
@@ -51,7 +51,7 @@ def main():
             # Check for duplicates before adding
             existing = [b for b in library.books if b.isbn == isbn]
             if existing:
-                print("⚠️  A book with this ISBN already exists.")
+                print("A book with this ISBN already exists.")
             else:
                 library.add_book(Book(title, author, isbn, genre, quantity))
 
@@ -61,7 +61,7 @@ def main():
             field = input("Enter field to update (title/author/genre/quantity): ").lower().strip()
 
             if field not in ["title", "author", "genre", "quantity"]:
-                print("⚠️  Invalid field name.")
+                print("Invalid field name.")
                 continue
 
             value = input("Enter new value: ").strip()
@@ -69,7 +69,7 @@ def main():
                 try:
                     value = int(value)
                 except ValueError:
-                    print("⚠️  Quantity must be a number.")
+                    print("Quantity must be a number.")
                     continue
 
             library.update_book(isbn, **{field: value})
@@ -80,7 +80,7 @@ def main():
             if confirm_action(f"Are you sure you want to remove the book (ISBN: {isbn})?"):
                 library.remove_book(isbn)
             else:
-                print("❌ Book removal cancelled.")
+                print("Book removal cancelled.")
 
         # --- Add Borrower ---
         elif choice == '4':
@@ -91,7 +91,7 @@ def main():
             # Check for duplicates before adding
             existing = [b for b in library.borrowers if b.membership_id == membership_id]
             if existing:
-                print("⚠️  A borrower with this membership ID already exists.")
+                print("A borrower with this membership ID already exists.")
             else:
                 library.add_borrower(Borrower(name, contact, membership_id))
 
@@ -112,29 +112,29 @@ def main():
             keyword = input("Enter keyword to search: ").strip()
             results = library.search_books(keyword)
             if results:
-                print("\n--- 🔍 Search Results ---")
+                print("\n---Search Results ---")
                 for book in results:
                     print(book)
             else:
-                print("❌ No books found matching that keyword.")
+                print("No books found matching that keyword.")
 
         # --- Show All Books ---
         elif choice == '8':
-            print("\n--- 📘 All Books ---")
+            print("\n--- All Books ---")
             library.show_all_books()
 
         # --- Show All Borrowers ---
         elif choice == '9':
-            print("\n--- 👥 All Borrowers ---")
+            print("\n--- All Borrowers ---")
             library.show_all_borrowers()
 
         # --- Exit ---
         elif choice == '0':
-            print("👋 Exiting Library Management System. Goodbye!")
+            print("Exiting Library Management System. Goodbye!")
             break
 
         else:
-            print("⚠️  Invalid choice. Please select a valid option (0-9).")
+            print("Invalid choice. Please select a valid option (0-9).")
 
 
 if __name__ == "__main__":
